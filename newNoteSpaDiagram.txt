@@ -1,0 +1,14 @@
+sequenceDiagram
+	participant browser
+	participant server
+	
+	Note right side of browser: user has pressed Save button
+	
+	Note right side of browser: call onSubmit function that was registered as callback when submit pressed
+
+	browser->>server POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa Content-Type JSON Body {"content": "some text","date": "some date"} 
+	activate server
+	server-->>browser: Note created message (as JSON)
+	deactivate server
+	
+	Note right side of browser: browser redraws notes due to call to redrawNotes() in callback
